@@ -208,8 +208,8 @@ void Trinage_background()
     }
 }
 int selectedOption = 0;
-std::string cimodkey = "https://t0pgamemurah.xyz/freeKey";
-std::string xyzBuyKey = "https://t0pgamemurah.xyz/freeKey";
+std::string cimodkey = OBF(KS_BUYKEY_URL);
+std::string xyzBuyKey = OBF(KS_BUYKEY_URL);
 
 void DrawMenu() {
 	const ImGuiViewport* main_viewport = ImGui::GetMainViewport();
