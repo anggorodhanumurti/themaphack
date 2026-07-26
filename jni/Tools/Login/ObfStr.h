@@ -42,10 +42,14 @@ public:
     }
 
     // Decrypt at runtime; the plaintext lives only in the returned std::string.
+    // The ciphertext is read through a volatile pointer so the optimizer cannot
+    // constant-fold the XOR back into the plaintext (which would defeat the
+    // obfuscation and leave the literal visible in the binary).
     std::string decrypt() const {
+        const volatile char *src = buf_;
         char tmp[N];
         for (std::size_t i = 0; i < N; ++i)
-            tmp[i] = static_cast<char>(static_cast<unsigned char>(buf_[i]) ^ keyByte(SEED, i));
+            tmp[i] = static_cast<char>(static_cast<unsigned char>(src[i]) ^ keyByte(SEED, i));
         std::string out(tmp, N - 1);
         for (std::size_t i = 0; i < N; ++i) tmp[i] = 0; // wipe stack copy
         return out;

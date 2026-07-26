@@ -10,18 +10,17 @@ using json = nlohmann::ordered_json;
 // ===========================================================================
 // Key-system server configuration.
 //
-// These three values are operator secrets and MUST be filled in before the
-// build is usable. They are wrapped with OBF()/pinning so they do not leak in
+// Operator secrets. Wrapped with OBF()/pinning so they do not leak in
 // `strings` output.
-//   KS_ENDPOINT_URL : full URL of the freeKey endpoint on the new server.
+//   KS_ENDPOINT_URL : full URL of the freeKey endpoint on the server.
 //   KS_AUTH_PEPPER  : must match KEY_SYSTEM_PEPPER on the server exactly.
 //   KS_TLS_PIN      : server SPKI pin, "sha256//<base64>" (empty = pin off).
-//   KS_BUYKEY_URL   : page opened by the in-menu "buy key" button.
+//   KS_TELEGRAM_URL : seller contact opened by the in-menu Telegram button.
 // ===========================================================================
-#define KS_ENDPOINT_URL "https://__REPLACE_URL__/api/public/freeKey"
-#define KS_AUTH_PEPPER  "__REPLACE_PEPPER__"
-#define KS_TLS_PIN      "sha256//__REPLACE_PIN__"
-#define KS_BUYKEY_URL   "https://__REPLACE_URL__/admin"
+#define KS_ENDPOINT_URL "https://orphsystem.lovable.app/api/public/freeKey"
+#define KS_AUTH_PEPPER  "Ahag6#&K8ja@$Hgu!gHs#G4#ja@k#"
+#define KS_TLS_PIN      "sha256//+cWUJ/hdAetPUsYN4LX445lyt3vPAPM8KrDEg+Zei4s="
+#define KS_TELEGRAM_URL "https://t.me/safkq"
 
 std::string title, version;
 std::string UUID;

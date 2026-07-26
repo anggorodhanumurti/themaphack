@@ -1,3 +1,5 @@
+#include "ObfStr.h"
+
 bool showMenu = true;
 bool bFullChecked = false;
 int selectedFeatures = 1;
@@ -208,8 +210,17 @@ void Trinage_background()
     }
 }
 int selectedOption = 0;
-std::string cimodkey = OBF(KS_BUYKEY_URL);
-std::string xyzBuyKey = OBF(KS_BUYKEY_URL);
+
+// Faux-bold text: overdraw the glyphs with a sub-pixel horizontal offset so a
+// single (non-bold) font still renders a visibly heavier weight.
+inline void TextBoldColored(const ImVec4& color, const char* text) {
+    ImVec2 pos = ImGui::GetCursorScreenPos();
+    ImU32 col = ImGui::ColorConvertFloat4ToU32(color);
+    ImDrawList* dl = ImGui::GetWindowDrawList();
+    dl->AddText(pos, col, text);
+    dl->AddText(ImVec2(pos.x + 0.8f, pos.y), col, text);
+    ImGui::Dummy(ImGui::CalcTextSize(text));
+}
 
 void DrawMenu() {
 	const ImGuiViewport* main_viewport = ImGui::GetMainViewport();
@@ -298,9 +309,13 @@ void DrawMenu() {
                     }
 					ImGui::Spacing();
 					ImGui::Spacing();
-					if (ImGui::Button("Get a Key", ImVec2(ImGui::GetContentRegionAvail().x, 0))) {
-        				openURL(g_vm, xyzBuyKey);
-  					}
+					// Seller contact: "BUY KEY @safkq" (handle in bold) + Telegram link.
+					ImGui::Text("BUY KEY");
+					ImGui::SameLine(0.0f, 6.0f);
+					TextBoldColored(RGBA2ImVec4(0, 200, 255, 255), "@safkq");
+					if (ImGui::Button("Contact @safkq on Telegram", ImVec2(ImGui::GetContentRegionAvail().x, 0))) {
+						openURL(g_vm, OBF(KS_TELEGRAM_URL));
+					}
                     ImGui::TextColored(RGBA2ImVec4(255, 255, 0, 255), "%s", msg.c_str());
                     ImGui::Spacing();
                 }
