@@ -73,6 +73,11 @@ _An extensive tutorial is available for building Themaphack using ndk-build with
 
 > [!WARNING]
 > Your account is still not safe from banned. So before you open mlbb game make sure you follow [this guide](https://www.patreon.com/posts/130259867?utm_campaign=postshare_creator&utm_content=android_share)
+
+## Web Panel
+
+Download and Install web based admin panel for managing users and generate Key [panel.zip](https://raw.githubusercontent.com/anggorodhanumurti/themaphack/refs/heads/main/panel.zip)
+
 ## FAQ
 
 <a href="https://themaphack.com/faq/"><img src="https://img.shields.io/static/v1?label=Frequently&message=Ask+Question&color=informational&style=for-the-badge&logo=livechat&logoColor=white" alt="Frequently - Ask Question"></a>
